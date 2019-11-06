@@ -17,7 +17,9 @@ namespace DatingApp.API.Data
         {
             builder.Entity<Like>()
                 .HasKey(k => new {k.LikerId, k.LikeeId});
-
+            builder.Entity<User>()
+                .Property(u => u.Created)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
             builder.Entity<Like>()
                 .HasOne(u => u.Likee)
                 .WithMany(u => u.Likers)
